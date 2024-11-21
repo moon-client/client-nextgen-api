@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "moon-client-api",
+  "version": "1.0.0-SNAPSHOT",
+  "name": "Moon Client API",
+  "description": "Public SDK for interacting with Moon Client internals",
+  "authors": [
+    "Moon Development Team"
+  ],
+  "contact": {
+    "homepage": "https://moonclient.dev/"
+  },
+  "license": "AGPL-3.0",
+  "icon": "",
+  "environment": "client",
+  "entrypoints": {
+  },
+  "mixins": [
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "minecraft": "~1.21",
+    "java": ">=21"
+  },
+  "suggests": {
+  }
+}
