@@ -17,25 +17,33 @@
  */
 package com.moon.client.api.feature;
 
-/// Makes a feature toggleable.
-///
-/// @author lennoxlotl
-/// @since 1.0.0
+/**
+ * Makes a feature toggleable.
+ *
+ * @author lennoxlotl
+ * @since 1.0.0
+ */
 public interface Toggleable {
-    /// Inverts the current toggled state.
-    ///
-    /// @since 1.0.0
+    /**
+     * Inverts the current toggled state.
+     *
+     * @since 1.0.0
+     */
     void toggle();
 
-    /// Returns the current toggle state.
-    ///
-    /// @return Toggled state
-    /// @since 1.0.0
+    /**
+     * Returns the current toggle state.
+     *
+     * @return Toggled state
+     * @since 1.0.0
+     */
     boolean isToggled();
 
-    /// Updates the current toggled state.
-    ///
-    /// @param value New toggled state
-    /// @since 1.0.0
+    /**
+     * Updates the current toggled state.
+     *
+     * @param value New toggled state
+     * @since 1.0.0
+     */
     void setToggled(boolean value);
 }

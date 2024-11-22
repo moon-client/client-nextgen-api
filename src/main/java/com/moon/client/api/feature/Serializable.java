@@ -19,23 +19,29 @@ package com.moon.client.api.feature;
 
 import com.google.gson.JsonObject;
 
-/// Makes a feature serializable.
-///
-/// Serializable features will automatically be saved on runtime and client closure.
-/// It is automatically restored after client launch on feature registration.
-///
-/// @author lennoxlotl
-/// @since 1.0.0
+/**
+ * Makes a feature serializable.
+ * <p>
+ * Serializable features will automatically be saved on runtime and client closure.
+ * It is automatically restored after client launch on feature registration.
+ *
+ * @author lennoxlotl
+ * @since 1.0.0
+ */
 public interface Serializable {
-    /// Serializes the feature state into a json object.
-    ///
-    /// @return The serialized state
-    /// @since 1.0.0
+    /**
+     * Serializes the feature state into a json object.
+     *
+     * @return The serialized state
+     * @since 1.0.0
+     */
     JsonObject serialize();
 
-    /// Deserializes the given state and applies it to the feature.
-    ///
-    /// @param json The serialized json object
-    /// @since 1.0.0
+    /**
+     * Deserializes the given state and applies it to the feature.
+     *
+     * @param json The serialized json object
+     * @since 1.0.0
+     */
     void deserialize(JsonObject json);
 }
