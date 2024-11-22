@@ -17,20 +17,16 @@
  */
 package com.moon.client.api.feature;
 
-/**
- * Makes a feature executable.
- * <p>
- * Executable features are mostly invoked / executed using the client chat.
- *
- * @author lennoxlotl
- * @since 1.0.0
- */
+/// Makes a feature executable.
+///
+/// Executable features are mostly invoked / executed using the client chat.
+///
+/// @author lennoxlotl
+/// @since 1.0.0
 public interface Executable {
-    /**
-     * Executes the executable with arguments.
-     *
-     * @param args The arguments
-     * @since 1.0.0
-     */
+    /// Executes the executable with arguments.
+    ///
+    /// @param args The arguments
+    /// @since 1.0.0
     void execute(String[] args);
 }

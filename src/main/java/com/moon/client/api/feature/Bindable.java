@@ -21,50 +21,40 @@ import com.moon.client.api.feature.binding.BindingInputDevice;
 import com.moon.client.api.feature.binding.BindingTriggerStrategy;
 import org.lwjgl.glfw.GLFW;
 
-/**
- * Makes a feature bindable.
- * <p>
- * Bindings are represented by a keyboard or mouse button being pressed, held or invoked
- * in other ways.
- *
- * @author lennoxlotl
- * @since 1.0.0
- */
+/// Makes a feature bindable.
+///
+/// Bindings are represented by a keyboard or mouse button being pressed, held or invoked
+/// in other ways.
+///
+/// @author lennoxlotl
+/// @since 1.0.0
 public interface Bindable {
-    /**
-     * Called once the bindable is triggered.
-     *
-     * @since 1.0.0
-     */
+    /// Called once the bindable is triggered.
+    ///
+    /// @since 1.0.0
     void onPressed();
 
-    /**
-     * Returns the input device used for triggering the bindable.
-     *
-     * @return Input device
-     * @since 1.0.0
-     */
+    /// Returns the input device used for triggering the bindable.
+    ///
+    /// @return Input device
+    /// @since 1.0.0
     BindingInputDevice inputDevice();
 
-    /**
-     * Returns the trigger strategy used to identify when to trigger a bindable.
-     *
-     * @return Trigger strategy
-     * @since 1.0.0
-     */
+    /// Returns the trigger strategy used to identify when to trigger a bindable.
+    ///
+    /// @return Trigger strategy
+    /// @since 1.0.0
     BindingTriggerStrategy inputTriggerStrategy();
 
-    /**
-     * Returns the key used for triggering the bindable.
-     * <p>
-     * Depending on the input device the format of this key is different.
-     * <ul>
-     * <li>For {@link BindingInputDevice#KEYBOARD} the value will be in the format of {@link GLFW} keys</li>
-     * <li>For {@link BindingInputDevice#MOUSE} the value will represent the index of the button used</li>
-     * </ul>
-     *
-     * @return Input key value
-     * @since 1.0.0
-     */
+    /// Returns the key used for triggering the bindable.
+    ///
+    /// Depending on the input device the format of this key is different.
+    ///
+    ///   - For [#KEYBOARD] the value will be in the format of [GLFW] keys
+    ///   - For [#MOUSE] the value will represent the index of the button used
+    ///
+    ///
+    /// @return Input key value
+    /// @since 1.0.0
     int inputKey();
 }
