@@ -27,7 +27,7 @@ package com.moon.client.api.feature.property;
  * @author lennoxlotl
  * @since 1.0.0
  */
-public interface PropertyChanceObserver<O, N> {
+public interface PropertyChangeObserver<O, N> {
     /**
      * Called on property value change.
      *

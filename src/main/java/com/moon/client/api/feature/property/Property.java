@@ -22,8 +22,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.util.List;
-
 /**
  * A property is a configurable value of a dynamically definable type.
  *
@@ -33,7 +31,7 @@ import java.util.List;
 @Getter
 @Accessors(fluent = true)
 @RequiredArgsConstructor
-public abstract class Property<T, C extends PropertyConstraints, O extends PropertyChanceObserver<?, ?>> {
+public abstract class Property<T, C extends PropertyConstraints, O extends PropertyChangeObserver<?, ?>> {
     protected final PropertyMetadata metadata;
     protected final C constraints;
     protected final O observer;

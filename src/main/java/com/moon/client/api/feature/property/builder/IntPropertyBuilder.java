@@ -18,19 +18,21 @@
 package com.moon.client.api.feature.property.builder;
 
 import com.moon.client.api.feature.Configurable;
-import com.moon.client.api.feature.property.PropertyChanceObserver;
+import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.constraint.NumberPropertyConstraints;
 import com.moon.client.api.feature.property.type.number.IntProperty;
 
-public class IntPropertyBuilder extends SimplePropertyBuilder<Integer, NumberPropertyConstraints<Integer>, PropertyChanceObserver<Integer, Integer>, IntProperty> {
+public class IntPropertyBuilder extends SimplePropertyBuilder<Integer, NumberPropertyConstraints<Integer>, PropertyChangeObserver<Integer, Integer>, IntProperty> {
     public IntPropertyBuilder(Configurable target) {
         super(target);
     }
 
     public IntProperty build() {
-        if (incomplete()) {
+        // Invalid builder
+        if (metadata == null || constraints == null || target == null) {
             throw new IllegalArgumentException("Incomplete builder, metadata, constraints, target must not be null");
         }
+
         IntProperty property = new IntProperty(metadata, constraints, observer);
         target.addProperty(property);
         return property;

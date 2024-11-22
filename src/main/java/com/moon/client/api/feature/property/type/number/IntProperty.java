@@ -19,7 +19,7 @@ package com.moon.client.api.feature.property.type.number;
 
 import com.google.gson.JsonObject;
 import com.moon.client.api.feature.Configurable;
-import com.moon.client.api.feature.property.PropertyChanceObserver;
+import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.PropertyMetadata;
 import com.moon.client.api.feature.property.builder.IntPropertyBuilder;
 import com.moon.client.api.feature.property.constraint.NumberPropertyConstraints;
@@ -36,7 +36,7 @@ import net.minecraft.util.math.MathHelper;
 public class IntProperty extends NumberProperty<Integer> {
     public IntProperty(PropertyMetadata metadata,
                        NumberPropertyConstraints<Integer> constraints,
-                       PropertyChanceObserver<Integer, Integer> observer) {
+                       PropertyChangeObserver<Integer, Integer> observer) {
         super(metadata, constraints, observer);
     }
 

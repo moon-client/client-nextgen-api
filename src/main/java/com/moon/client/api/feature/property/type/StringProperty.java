@@ -20,7 +20,7 @@ package com.moon.client.api.feature.property.type;
 import com.google.gson.JsonObject;
 import com.moon.client.api.feature.Configurable;
 import com.moon.client.api.feature.property.Property;
-import com.moon.client.api.feature.property.PropertyChanceObserver;
+import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.PropertyMetadata;
 import com.moon.client.api.feature.property.builder.StringPropertyBuilder;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
@@ -31,10 +31,10 @@ import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
  * @author lennoxlotl
  * @since 1.0.0
  */
-public class StringProperty extends Property<String, EmptyPropertyConstraints, PropertyChanceObserver<String, String>> {
+public class StringProperty extends Property<String, EmptyPropertyConstraints, PropertyChangeObserver<String, String>> {
     public StringProperty(PropertyMetadata metadata,
                           EmptyPropertyConstraints constraints,
-                          PropertyChanceObserver<String, String> observer) {
+                          PropertyChangeObserver<String, String> observer) {
         super(metadata, constraints, observer);
     }
 

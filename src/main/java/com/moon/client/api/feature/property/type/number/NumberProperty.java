@@ -18,7 +18,7 @@
 package com.moon.client.api.feature.property.type.number;
 
 import com.moon.client.api.feature.property.Property;
-import com.moon.client.api.feature.property.PropertyChanceObserver;
+import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.PropertyMetadata;
 import com.moon.client.api.feature.property.constraint.NumberPropertyConstraints;
 import lombok.Getter;
@@ -33,11 +33,11 @@ import lombok.Getter;
  * @since 1.0.0
  */
 @Getter
-abstract class NumberProperty<T extends Number> extends Property<T, NumberPropertyConstraints<T>, PropertyChanceObserver<T, T>> {
+abstract class NumberProperty<T extends Number> extends Property<T, NumberPropertyConstraints<T>, PropertyChangeObserver<T, T>> {
     protected static final int PLACES_COUNT = 3;
     protected T rawValue;
 
-    public NumberProperty(PropertyMetadata metadata, NumberPropertyConstraints<T> constraints, PropertyChanceObserver<T, T> observer) {
+    public NumberProperty(PropertyMetadata metadata, NumberPropertyConstraints<T> constraints, PropertyChangeObserver<T, T> observer) {
         super(metadata, constraints, observer);
     }
 

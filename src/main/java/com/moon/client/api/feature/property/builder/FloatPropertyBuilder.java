@@ -18,17 +18,22 @@
 package com.moon.client.api.feature.property.builder;
 
 import com.moon.client.api.feature.Configurable;
-import com.moon.client.api.feature.property.PropertyChanceObserver;
+import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.constraint.NumberPropertyConstraints;
 import com.moon.client.api.feature.property.type.number.FloatProperty;
 
-public class FloatPropertyBuilder extends SimplePropertyBuilder<Float, NumberPropertyConstraints<Float>, PropertyChanceObserver<Float, Float>, FloatProperty> {
+public class FloatPropertyBuilder extends SimplePropertyBuilder<Float, NumberPropertyConstraints<Float>, PropertyChangeObserver<Float, Float>, FloatProperty> {
     public FloatPropertyBuilder(Configurable target) {
         super(target);
     }
 
     @Override
     public FloatProperty build() {
+        // Invalid builder
+        if (metadata == null || constraints == null || target == null) {
+            throw new IllegalArgumentException("Incomplete builder, metadata, constraints, target must not be null");
+        }
+
         FloatProperty property = new FloatProperty(metadata, constraints, observer);
         target.addProperty(property);
         return property;

@@ -19,7 +19,7 @@ package com.moon.client.api.feature.property.builder;
 
 import com.moon.client.api.feature.Configurable;
 import com.moon.client.api.feature.property.Property;
-import com.moon.client.api.feature.property.PropertyChanceObserver;
+import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.PropertyConstraints;
 import com.moon.client.api.feature.property.PropertyMetadata;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +35,7 @@ import lombok.RequiredArgsConstructor;
  * @since 1.0.0
  */
 @RequiredArgsConstructor
-public abstract class SimplePropertyBuilder<T, C extends PropertyConstraints, O extends PropertyChanceObserver<?, ?>, P extends Property<T, C, O>> {
+public abstract class SimplePropertyBuilder<T, C extends PropertyConstraints, O extends PropertyChangeObserver<?, ?>, P extends Property<T, C, O>> {
     protected final Configurable target;
     protected PropertyMetadata metadata;
     protected O observer;
@@ -57,8 +57,4 @@ public abstract class SimplePropertyBuilder<T, C extends PropertyConstraints, O 
     }
 
     public abstract P build();
-
-    protected boolean incomplete() {
-        return metadata == null || constraints == null || target == null;
-    }
 }

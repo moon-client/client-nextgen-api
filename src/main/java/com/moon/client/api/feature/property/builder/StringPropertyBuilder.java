@@ -18,17 +18,22 @@
 package com.moon.client.api.feature.property.builder;
 
 import com.moon.client.api.feature.Configurable;
-import com.moon.client.api.feature.property.PropertyChanceObserver;
+import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
 import com.moon.client.api.feature.property.type.StringProperty;
 
-public class StringPropertyBuilder extends SimplePropertyBuilder<String, EmptyPropertyConstraints, PropertyChanceObserver<String, String>, StringProperty> {
+public class StringPropertyBuilder extends SimplePropertyBuilder<String, EmptyPropertyConstraints, PropertyChangeObserver<String, String>, StringProperty> {
     public StringPropertyBuilder(Configurable target) {
         super(target);
     }
 
     @Override
     public StringProperty build() {
+        // Invalid builder
+        if (metadata == null || target == null) {
+            throw new IllegalArgumentException("Incomplete builder, metadata, constraints, target must not be null");
+        }
+
         StringProperty property = new StringProperty(metadata, constraints, observer);
         target.addProperty(property);
         return property;
