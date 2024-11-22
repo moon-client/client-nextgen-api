@@ -44,7 +44,7 @@ public interface Bindable {
      * @return Input device
      * @since 1.0.0
      */
-    BindingInputDevice getInputDevice();
+    BindingInputDevice inputDevice();
 
     /**
      * Returns the trigger strategy used to identify when to trigger a bindable.
@@ -52,7 +52,7 @@ public interface Bindable {
      * @return Trigger strategy
      * @since 1.0.0
      */
-    BindingTriggerStrategy getInputTriggerStrategy();
+    BindingTriggerStrategy inputTriggerStrategy();
 
     /**
      * Returns the key used for triggering the bindable.
@@ -66,5 +66,5 @@ public interface Bindable {
      * @return Input key value
      * @since 1.0.0
      */
-    int getInputKey();
+    int inputKey();
 }
