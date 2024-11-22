@@ -40,7 +40,11 @@ public class StringProperty extends Property<String, EmptyPropertyConstraints, P
 
     @Override
     public void value(String value) {
+        if (observer != null) {
+            observer.observe(this.value, value);
+        }
 
+        this.value = value;
     }
 
     @Override

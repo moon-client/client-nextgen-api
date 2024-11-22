@@ -31,7 +31,7 @@ public class StringPropertyBuilder extends SimplePropertyBuilder<String, EmptyPr
     public StringProperty build() {
         // Invalid builder
         if (metadata == null || target == null) {
-            throw new IllegalArgumentException("Incomplete builder, metadata, constraints, target must not be null");
+            throw new IllegalArgumentException("Incomplete builder, metadata, target must not be null");
         }
 
         StringProperty property = new StringProperty(metadata, constraints, observer);

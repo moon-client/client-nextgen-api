@@ -51,6 +51,11 @@ public class FloatProperty extends NumberProperty<Float> {
                     constraints.min(),
                     constraints.max()),
                 PLACES_COUNT);
+
+        if (observer != null) {
+            observer.observe(this.value, rounded);
+        }
+
         this.rawValue = clamped;
         this.value = rounded;
     }

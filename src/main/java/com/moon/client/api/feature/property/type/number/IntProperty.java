@@ -49,6 +49,11 @@ public class IntProperty extends NumberProperty<Integer> {
                 (int) Math.round(steps * Math.ceil(value.floatValue() / steps)),
                 constraints.min(),
                 constraints.max());
+
+        if (observer != null) {
+            observer.observe(this.value, rounded);
+        }
+
         this.rawValue = clamped;
         this.value = rounded;
     }

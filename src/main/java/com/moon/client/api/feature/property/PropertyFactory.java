@@ -19,9 +19,11 @@ package com.moon.client.api.feature.property;
 
 import com.moon.client.api.feature.Configurable;
 import com.moon.client.api.feature.Feature;
+import com.moon.client.api.feature.property.builder.EnumPropertyBuilder;
 import com.moon.client.api.feature.property.builder.FloatPropertyBuilder;
 import com.moon.client.api.feature.property.builder.IntPropertyBuilder;
 import com.moon.client.api.feature.property.builder.StringPropertyBuilder;
+import com.moon.client.api.feature.property.type.EnumProperty;
 import com.moon.client.api.feature.property.type.number.FloatProperty;
 import com.moon.client.api.feature.property.type.number.IntProperty;
 import com.moon.client.api.feature.property.type.StringProperty;
@@ -43,5 +45,9 @@ public class PropertyFactory {
 
     public static StringPropertyBuilder stringBuilder(Configurable target) {
         return StringProperty.builder(target);
+    }
+
+    public static <T extends Enum<T> & PropertyEnum> EnumPropertyBuilder<T> enumBuilder(Configurable target, Class<T> clazz) {
+        return EnumProperty.builder(target, clazz);
     }
 }
