@@ -18,7 +18,9 @@
 package com.moon.client.api.feature.property;
 
 import com.moon.client.api.feature.Feature;
+import com.moon.client.api.feature.FeatureService;
 import com.moon.client.api.feature.Toggleable;
+import com.moon.client.api.service.ServiceRegistry;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -43,6 +45,9 @@ public abstract class PropertyModeFeature<T extends Feature> implements Toggleab
      * @since 1.0.0
      */
     public void checkFeatureAbsent() {
-        // TODO: implement once feature service is available
+        if (feature == null) {
+            feature =
+                ServiceRegistry.<FeatureService>findService(FeatureService.class).find(featureClazz);
+        }
     }
 }
