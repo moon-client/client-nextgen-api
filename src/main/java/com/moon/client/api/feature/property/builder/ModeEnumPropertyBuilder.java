@@ -18,27 +18,31 @@
 package com.moon.client.api.feature.property.builder;
 
 import com.moon.client.api.feature.Configurable;
+import com.moon.client.api.feature.Feature;
 import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.PropertyEnum;
+import com.moon.client.api.feature.property.PropertyMode;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
-import com.moon.client.api.feature.property.type.EnumProperty;
+import com.moon.client.api.feature.property.type.ModeEnumProperty;
 
-public class EnumPropertyBuilder<T extends Enum<T> & PropertyEnum> extends SimplePropertyBuilder<T, EmptyPropertyConstraints, PropertyChangeObserver<T, T>, EnumProperty<T>> {
+public class ModeEnumPropertyBuilder<T extends Enum<T> & PropertyEnum & PropertyMode<?>> extends SimplePropertyBuilder<T, EmptyPropertyConstraints, PropertyChangeObserver<T, T>, ModeEnumProperty<T>> {
     private final Class<T> clazz;
+    private final Feature feature;
 
-    public EnumPropertyBuilder(Configurable target, Class<T> clazz) {
+    public ModeEnumPropertyBuilder(Configurable target, Class<T> clazz, Feature feature) {
         super(target);
         this.clazz = clazz;
+        this.feature = feature;
     }
 
     @Override
-    public EnumProperty<T> build() {
+    public ModeEnumProperty<T> build() {
         // Invalid builder
         if (metadata == null || clazz == null || target == null) {
             throw new IllegalArgumentException("Incomplete builder, metadata, clazz, target must not be null");
         }
 
-        EnumProperty<T> property = new EnumProperty<>(metadata, constraints, observer, clazz);
+        ModeEnumProperty<T> property = new ModeEnumProperty<>(metadata, constraints, observer, feature, clazz);
         target.addProperty(property);
         return property;
     }

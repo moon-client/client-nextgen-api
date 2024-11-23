@@ -17,27 +17,15 @@
  */
 package com.moon.client.api.feature.property;
 
+import com.moon.client.api.feature.Feature;
+
 /**
- * Marks an enum as usable in properties.
+ * Marks an enum as a mode selector.
  *
  * @author lennoxlotl
+ * @apiNote Every mode selector enum must also implement {@link PropertyEnum}
  * @since 1.0.0
  */
-public interface PropertyEnum {
-    /**
-     * The id of the enum value used for serialization purposes.
-     *
-     * @return Enum id
-     * @since 1.0.0
-     */
-    String id();
-
-    /**
-     * Returns an i18n key linking to the display-name of the enum value
-     *
-     * @return Locale key (i18n)
-     * @apiNote Locale implementation will display locale key if translation is not found
-     * @since 1.0.0
-     */
-    String name();
+public interface PropertyMode<T extends Feature> {
+    PropertyModeFeature<T> modeFeature();
 }

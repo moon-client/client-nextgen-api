@@ -19,11 +19,9 @@ package com.moon.client.api.feature.property.type;
 
 import com.google.gson.JsonObject;
 import com.moon.client.api.feature.Configurable;
-import com.moon.client.api.feature.property.Property;
-import com.moon.client.api.feature.property.PropertyChangeObserver;
-import com.moon.client.api.feature.property.PropertyEnum;
-import com.moon.client.api.feature.property.PropertyMetadata;
-import com.moon.client.api.feature.property.builder.EnumPropertyBuilder;
+import com.moon.client.api.feature.Feature;
+import com.moon.client.api.feature.property.*;
+import com.moon.client.api.feature.property.builder.ModeEnumPropertyBuilder;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
 import lombok.Getter;
 
@@ -31,30 +29,30 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Property used for selection of a {@link Enum} type (list).
+ * Property used for selecting a mode feature from a {@link PropertyEnum} and {@link PropertyMode}.
  *
- * @param <T> The enum type
+ * @param <T> The enum type containing all modes
  * @author lennoxlotl
  * @since 1.0.0
  */
 @Getter
-public class EnumProperty<T extends Enum<T> & PropertyEnum> extends Property<T, EmptyPropertyConstraints, PropertyChangeObserver<T, T>> {
+public class ModeEnumProperty<T extends Enum<T> & PropertyEnum & PropertyMode<?>> extends Property<T, EmptyPropertyConstraints, PropertyChangeObserver<T, T>> {
+    private final Feature feature;
     private final List<T> constants;
 
-    public EnumProperty(PropertyMetadata metadata,
-                        EmptyPropertyConstraints constraints,
-                        PropertyChangeObserver<T, T> observer,
-                        Class<T> clazz) {
+    public ModeEnumProperty(PropertyMetadata metadata,
+                            EmptyPropertyConstraints constraints,
+                            PropertyChangeObserver<T, T> observer,
+                            Feature feature,
+                            Class<T> clazz) {
         super(metadata, constraints, observer);
+        this.feature = feature;
         this.constants = Arrays.stream(clazz.getEnumConstants()).toList();
     }
 
     @Override
     public void value(T value) {
-        if (observer != null) {
-            observer.observe(this.value, value);
-        }
-
+        // TODO: Handle toggleable, event service required
         this.value = value;
     }
 
@@ -78,7 +76,7 @@ public class EnumProperty<T extends Enum<T> & PropertyEnum> extends Property<T, 
         }
     }
 
-    public static <T extends Enum<T> & PropertyEnum> EnumPropertyBuilder<T> builder(Configurable target, Class<T> clazz) {
-        return new EnumPropertyBuilder<>(target, clazz);
+    public static <T extends Enum<T> & PropertyEnum & PropertyMode<?>> ModeEnumPropertyBuilder<T> builder(Configurable target, Class<T> clazz, Feature feature) {
+        return new ModeEnumPropertyBuilder<>(target, clazz, feature);
     }
 }

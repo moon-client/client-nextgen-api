@@ -17,27 +17,32 @@
  */
 package com.moon.client.api.feature.property;
 
+import com.moon.client.api.feature.Feature;
+import com.moon.client.api.feature.Toggleable;
+import lombok.RequiredArgsConstructor;
+
 /**
- * Marks an enum as usable in properties.
+ * Used to implement feature modes for {@link PropertyMode} mode selectors.
  *
  * @author lennoxlotl
  * @since 1.0.0
  */
-public interface PropertyEnum {
-    /**
-     * The id of the enum value used for serialization purposes.
-     *
-     * @return Enum id
-     * @since 1.0.0
-     */
-    String id();
+@RequiredArgsConstructor
+public abstract class PropertyModeFeature<T extends Feature> implements Toggleable {
+    private final Class<T> featureClazz;
+    private T feature;
+
+    public T feature() {
+        checkFeatureAbsent();
+        return feature;
+    }
 
     /**
-     * Returns an i18n key linking to the display-name of the enum value
+     * Makes sure the feature instance is available on runtime.
      *
-     * @return Locale key (i18n)
-     * @apiNote Locale implementation will display locale key if translation is not found
      * @since 1.0.0
      */
-    String name();
+    public void checkFeatureAbsent() {
+        // TODO: implement once feature service is available
+    }
 }
