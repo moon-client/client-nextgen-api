@@ -25,6 +25,20 @@ package com.moon.client.api.feature;
  */
 public interface Toggleable {
     /**
+     * Called on new toggle state true.
+     *
+     * @since 1.0.0
+     */
+    void enable();
+
+    /**
+     * Called on new toggle state false.
+     *
+     * @since 1.0.0
+     */
+    void disable();
+
+    /**
      * Inverts the current toggled state.
      *
      * @since 1.0.0

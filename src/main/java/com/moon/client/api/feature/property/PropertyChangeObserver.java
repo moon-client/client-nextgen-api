@@ -15,16 +15,26 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.moon.client.api.feature;
+package com.moon.client.api.feature.property;
 
-import com.moon.client.api.feature.property.Property;
-
-public interface Configurable {
+/**
+ * Used to listen to property changes on runtime.
+ * <p>
+ * As some property types might be multi-select (for example a combo-box) the observer types have to be
+ * dynamically definable.
+ * This adds a lot of type complexity but this complexity is not visible while using the property api.
+ *
+ * @author lennoxlotl
+ * @since 1.0.0
+ */
+public interface PropertyChangeObserver<O, N> {
     /**
-     * Adds a property to the configurable.
+     * Called on property value change.
      *
-     * @param property The property
+     * @param oldState The old value state
+     * @param newState The new value state
+     * @author lennoxlotl
      * @since 1.0.0
      */
-    void addProperty(Property<?, ?, ?> property);
+    void observe(O oldState, N newState);
 }

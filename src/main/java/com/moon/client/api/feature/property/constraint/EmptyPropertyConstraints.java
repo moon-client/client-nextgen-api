@@ -15,16 +15,15 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.moon.client.api.feature;
+package com.moon.client.api.feature.property.constraint;
 
-import com.moon.client.api.feature.property.Property;
+import com.moon.client.api.feature.property.PropertyConstraints;
 
-public interface Configurable {
-    /**
-     * Adds a property to the configurable.
-     *
-     * @param property The property
-     * @since 1.0.0
-     */
-    void addProperty(Property<?, ?, ?> property);
+/**
+ * Empty constraints for properties that do not require any.
+ *
+ * @author lennoxlotl
+ * @since 1.0.0
+ */
+public class EmptyPropertyConstraints implements PropertyConstraints {
 }
