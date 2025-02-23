@@ -35,6 +35,7 @@ public class StringPropertyBuilder extends SimplePropertyBuilder<String, EmptyPr
         }
 
         StringProperty property = new StringProperty(metadata, constraints, observer);
+        property.value(defaultValue);
         target.addProperty(property);
         return property;
     }

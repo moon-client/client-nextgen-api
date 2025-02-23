@@ -39,6 +39,7 @@ public class EnumPropertyBuilder<T extends Enum<T> & PropertyEnum> extends Simpl
         }
 
         EnumProperty<T> property = new EnumProperty<>(metadata, constraints, observer, clazz);
+        property.value(defaultValue);
         target.addProperty(property);
         return property;
     }

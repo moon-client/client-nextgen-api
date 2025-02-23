@@ -43,6 +43,7 @@ public abstract class SimplePropertyBuilder<T, C extends PropertyConstraints, O 
     protected O observer;
     protected C constraints;
     protected Supplier<Boolean> visibility;
+    protected T defaultValue;
 
     public SimplePropertyBuilder<T, C, O, P> withMetadata(PropertyMetadata metadata) {
         this.metadata = metadata;
@@ -61,6 +62,11 @@ public abstract class SimplePropertyBuilder<T, C extends PropertyConstraints, O 
 
     public SimplePropertyBuilder<T, C, O, P> withVisibility(Supplier<Boolean> visibility) {
         this.visibility = visibility;
+        return this;
+    }
+
+    public SimplePropertyBuilder<T, C, O, P> withDefaultValue(T defaultValue) {
+        this.defaultValue = defaultValue;
         return this;
     }
 

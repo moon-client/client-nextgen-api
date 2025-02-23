@@ -41,6 +41,7 @@ public class IntPropertyBuilder extends SimplePropertyBuilder<Integer, NumberPro
         }
 
         IntProperty property = new IntProperty(metadata, constraints, observer);
+        property.value(defaultValue);
         target.addProperty(property);
         return property;
     }

@@ -43,6 +43,7 @@ public class ModeEnumPropertyBuilder<T extends Enum<T> & PropertyEnum & Property
         }
 
         ModeEnumProperty<T> property = new ModeEnumProperty<>(metadata, constraints, observer, feature, clazz);
+        property.value(defaultValue);
         target.addProperty(property);
         return property;
     }

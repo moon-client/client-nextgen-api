@@ -42,6 +42,7 @@ public class FloatPropertyBuilder extends SimplePropertyBuilder<Float, NumberPro
         }
 
         FloatProperty property = new FloatProperty(metadata, constraints, observer);
+        property.value(defaultValue);
         target.addProperty(property);
         return property;
     }
