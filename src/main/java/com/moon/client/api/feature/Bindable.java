@@ -67,4 +67,28 @@ public interface Bindable {
      * @since 1.0.0
      */
     int inputKey();
+
+    /**
+     * Sets the input device type.
+     *
+     * @param inputDevice Input device type
+     * @since 1.0.0
+     */
+    void setInputDevice(BindingInputDevice inputDevice);
+
+    /**
+     * Sets the input trigger strategy.
+     *
+     * @param inputTriggerStrategy Input trigger strategy
+     * @since 1.0.0
+     */
+    void setInputTriggerStrategy(BindingTriggerStrategy inputTriggerStrategy);
+
+    /**
+     * Sets the input key.
+     *
+     * @param inputKey Input key
+     * @since 1.0.0
+     */
+    void setInputKey(int inputKey);
 }
