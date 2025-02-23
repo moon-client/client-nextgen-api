@@ -21,6 +21,7 @@ import com.google.gson.JsonObject;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A property is a configurable value of a dynamically definable type.
@@ -57,7 +58,7 @@ public abstract class Property<T, C extends PropertyConstraints, O extends Prope
      * @return The serialized json object
      * @since 1.0.0
      */
-    public abstract JsonObject serialize();
+    public abstract @Nullable JsonObject serialize();
 
     /**
      * Deserializes the property using a {@link JsonObject}
