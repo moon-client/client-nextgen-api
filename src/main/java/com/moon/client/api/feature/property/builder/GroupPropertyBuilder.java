@@ -44,6 +44,7 @@ public class GroupPropertyBuilder extends SimplePropertyBuilder<List<Property<?,
         return this;
     }
 
+    @Override
     public GroupProperty build() {
         // Invalid builder
         if (metadata == null || target == null) {
