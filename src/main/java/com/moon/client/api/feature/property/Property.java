@@ -20,6 +20,7 @@ package com.moon.client.api.feature.property;
 import com.google.gson.JsonObject;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,6 +37,9 @@ public abstract class Property<T, C extends PropertyConstraints, O extends Prope
     protected final PropertyMetadata metadata;
     protected final C constraints;
     protected final O observer;
+    @Setter
+    // If property is grouped it might be processed differently by UIs
+    protected boolean grouped;
     protected T value;
 
     public abstract void value(T value);

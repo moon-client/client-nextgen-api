@@ -21,6 +21,7 @@ import com.moon.client.api.feature.Configurable;
 import com.moon.client.api.feature.Feature;
 import com.moon.client.api.feature.property.builder.*;
 import com.moon.client.api.feature.property.type.EnumProperty;
+import com.moon.client.api.feature.property.type.GroupProperty;
 import com.moon.client.api.feature.property.type.ModeEnumProperty;
 import com.moon.client.api.feature.property.type.number.FloatProperty;
 import com.moon.client.api.feature.property.type.number.IntProperty;
@@ -51,5 +52,9 @@ public class PropertyFactory {
 
     public static <T extends Enum<T> & PropertyEnum & PropertyMode<?>> ModeEnumPropertyBuilder<T> modeEnumBuilder(Configurable target, Class<T> clazz, Feature feature) {
         return ModeEnumProperty.builder(target, clazz, feature);
+    }
+
+    public static GroupPropertyBuilder groupBuilder(Configurable target) {
+        return GroupProperty.builder(target);
     }
 }
