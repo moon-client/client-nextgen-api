@@ -24,6 +24,8 @@ import com.moon.client.api.feature.property.PropertyConstraints;
 import com.moon.client.api.feature.property.PropertyMetadata;
 import lombok.RequiredArgsConstructor;
 
+import java.util.function.Supplier;
+
 /**
  * Provides a basic builder template for simple property types (such as numbers).
  *
@@ -40,6 +42,7 @@ public abstract class SimplePropertyBuilder<T, C extends PropertyConstraints, O 
     protected PropertyMetadata metadata;
     protected O observer;
     protected C constraints;
+    protected Supplier<Boolean> visibility;
 
     public SimplePropertyBuilder<T, C, O, P> withMetadata(PropertyMetadata metadata) {
         this.metadata = metadata;
@@ -53,6 +56,11 @@ public abstract class SimplePropertyBuilder<T, C extends PropertyConstraints, O 
 
     public SimplePropertyBuilder<T, C, O, P> withObserver(O observer) {
         this.observer = observer;
+        return this;
+    }
+
+    public SimplePropertyBuilder<T, C, O, P> withVisibility(Supplier<Boolean> visibility) {
+        this.visibility = visibility;
         return this;
     }
 

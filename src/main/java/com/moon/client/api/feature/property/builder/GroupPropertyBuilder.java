@@ -19,20 +19,19 @@ package com.moon.client.api.feature.property.builder;
 
 import com.moon.client.api.feature.Configurable;
 import com.moon.client.api.feature.property.Property;
-import com.moon.client.api.feature.property.PropertyMetadata;
+import com.moon.client.api.feature.property.PropertyChangeObserver;
+import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
 import com.moon.client.api.feature.property.type.GroupProperty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GroupPropertyBuilder {
-    protected final Configurable target;
-    protected PropertyMetadata metadata;
+public class GroupPropertyBuilder extends SimplePropertyBuilder<List<Property<?, ?, ?>>, EmptyPropertyConstraints, PropertyChangeObserver<Object, Object>, GroupProperty> {
     private final List<Property<?, ?, ?>> members = new ArrayList<>();
 
     public GroupPropertyBuilder(Configurable target) {
-        this.target = target;
+        super(target);
     }
 
     public GroupPropertyBuilder withMembers(Property<?, ?, ?>... members) {
@@ -41,6 +40,7 @@ public class GroupPropertyBuilder {
                     property.grouped(true);
                     this.members.add(property);
                 });
+        this.members.addAll(Arrays.stream(members).toList());
         return this;
     }
 
@@ -52,6 +52,7 @@ public class GroupPropertyBuilder {
 
         // Constraints and observers not supported
         GroupProperty property = new GroupProperty(metadata, null, null);
+        property.visibility(visibility);
         property.value(members);
         target.addProperty(property);
         return property;

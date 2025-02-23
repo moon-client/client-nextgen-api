@@ -24,6 +24,8 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.function.Supplier;
+
 /**
  * A property is a configurable value of a dynamically definable type.
  *
@@ -37,6 +39,9 @@ public abstract class Property<T, C extends PropertyConstraints, O extends Prope
     protected final PropertyMetadata metadata;
     protected final C constraints;
     protected final O observer;
+    @Setter
+    // Only affects UI implementations
+    protected Supplier<Boolean> visibility;
     @Setter
     // If property is grouped it might be processed differently by UIs
     protected boolean grouped;
