@@ -15,16 +15,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.moon.client.api.feature;
+package com.moon.client.api.feature.property;
 
-import com.moon.client.api.feature.property.Property;
+import com.moon.client.api.feature.Feature;
 
-public interface Configurable {
-    /**
-     * Adds a property to the configurable.
-     *
-     * @param property The property
-     * @since 1.0.0
-     */
-    void addProperty(Property<?, ?, ?> property);
+/**
+ * Marks an enum as a mode selector.
+ *
+ * @author lennoxlotl
+ * @apiNote Every mode selector enum must also implement {@link PropertyEnum}
+ * @since 1.0.0
+ */
+public interface PropertyMode<T extends Feature> {
+    PropertyModeFeature<T> modeFeature();
 }

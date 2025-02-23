@@ -17,47 +17,40 @@
  */
 package com.moon.client.api.feature;
 
+import com.moon.client.api.service.Service;
+
 /**
- * Makes a feature toggleable.
+ * Public access to the feature api.
  *
  * @author lennoxlotl
  * @since 1.0.0
  */
-public interface Toggleable {
+public interface FeatureService extends Service {
     /**
-     * Called on new toggle state true.
+     * Registers a feature in the responsible repository.
      *
+     * @param feature Feature instance
      * @since 1.0.0
      */
-    void enable();
+    void register(Feature feature);
 
     /**
-     * Called on new toggle state false.
+     * Finds a feature in the responsible repository by the features class.
      *
+     * @param feature Feature class
+     * @param <T>     Feature type
+     * @return Feature instance or null
      * @since 1.0.0
      */
-    void disable();
+    <T extends Feature> T find(Class<? extends Feature> feature);
 
     /**
-     * Inverts the current toggled state.
+     * Finds a feature in the responsible repository by the feature id.
      *
+     * @param id  Feature id
+     * @param <T> Feature type
+     * @return Feature instance or null
      * @since 1.0.0
      */
-    void toggle();
-
-    /**
-     * Returns the current toggle state.
-     *
-     * @return Toggled state
-     * @since 1.0.0
-     */
-    boolean isToggled();
-
-    /**
-     * Updates the current toggled state.
-     *
-     * @param value New toggled state
-     * @since 1.0.0
-     */
-    void setToggled(boolean value);
+    <T extends Feature> T find(String id);
 }

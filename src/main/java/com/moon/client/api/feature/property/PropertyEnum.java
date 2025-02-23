@@ -15,16 +15,29 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.moon.client.api.feature;
+package com.moon.client.api.feature.property;
 
-import com.moon.client.api.feature.property.Property;
-
-public interface Configurable {
+/**
+ * Marks an enum as usable in properties.
+ *
+ * @author lennoxlotl
+ * @since 1.0.0
+ */
+public interface PropertyEnum {
     /**
-     * Adds a property to the configurable.
+     * The id of the enum value used for serialization purposes.
      *
-     * @param property The property
+     * @return Enum id
      * @since 1.0.0
      */
-    void addProperty(Property<?, ?, ?> property);
+    String id();
+
+    /**
+     * Returns an i18n key linking to the display-name of the enum value
+     *
+     * @return Locale key (i18n)
+     * @apiNote Locale implementation will display locale key if translation is not found
+     * @since 1.0.0
+     */
+    String name();
 }

@@ -15,16 +15,22 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.moon.client.api.feature;
+package com.moon.client.api.feature.property;
 
-import com.moon.client.api.feature.property.Property;
-
-public interface Configurable {
-    /**
-     * Adds a property to the configurable.
-     *
-     * @param property The property
-     * @since 1.0.0
-     */
-    void addProperty(Property<?, ?, ?> property);
+/**
+ * Defines required meta-data every property must have to be created.
+ * <p>
+ * This data is used for serialization, ui and other areas visible by the user,
+ * therefore sensible data shall be provided here.
+ *
+ * @param id   The internal id of the property (must be and stay unique)
+ * @param name The i18n key linking to the display-name of the property
+ * @author lennoxlotl
+ * @apiNote Locale implementation will display locale key if translation is not found
+ * @since 1.0.0
+ */
+public record PropertyMetadata(String id, String name) {
+    public static PropertyMetadata of(String id, String name) {
+        return new PropertyMetadata(id, name);
+    }
 }
