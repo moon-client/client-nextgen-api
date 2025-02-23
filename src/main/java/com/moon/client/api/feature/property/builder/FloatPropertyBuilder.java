@@ -33,6 +33,13 @@ public class FloatPropertyBuilder extends SimplePropertyBuilder<Float, NumberPro
         if (metadata == null || constraints == null || target == null) {
             throw new IllegalArgumentException("Incomplete builder, metadata, constraints, target must not be null");
         }
+        // Invalid constraints
+        if (constraints.min() >= constraints.max()) {
+            throw new IllegalArgumentException("Invalid constraint, min is not allowed to be above or equal max");
+        }
+        if (constraints.steps() > constraints.max()) {
+            throw new IllegalArgumentException("Invalid constraint, steps is not allowed to be above or equal max");
+        }
 
         FloatProperty property = new FloatProperty(metadata, constraints, observer);
         target.addProperty(property);
