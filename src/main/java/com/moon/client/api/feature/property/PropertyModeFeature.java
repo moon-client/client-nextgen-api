@@ -39,6 +39,19 @@ public abstract class PropertyModeFeature<T extends Feature> implements Toggleab
         return feature;
     }
 
+    @Override
+    public void toggle() {
+    }
+
+    @Override
+    public boolean isToggled() {
+        return false;
+    }
+
+    @Override
+    public void setToggled(boolean value) {
+    }
+
     /**
      * Makes sure the feature instance is available on runtime.
      *
@@ -47,7 +60,7 @@ public abstract class PropertyModeFeature<T extends Feature> implements Toggleab
     public void checkFeatureAbsent() {
         if (feature == null) {
             feature =
-                ServiceRegistry.<FeatureService>findService(FeatureService.class).find(featureClazz);
+                    ServiceRegistry.<FeatureService>findService(FeatureService.class).find(featureClazz);
         }
     }
 }
