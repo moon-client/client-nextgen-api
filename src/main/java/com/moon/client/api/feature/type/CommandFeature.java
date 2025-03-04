@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Command features provide functionality configured and executed using user text input.
  *
- * <h1>Defining arguments</h1>
+ * <p>Defining arguments</p>
  * Command arguments are defined using the {@link Property} system / {@link Configurable} interface.
  * <p>
  * The defined properties are then translated to brigadier syntax on runtime (for auto-completion).

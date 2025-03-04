@@ -5,10 +5,10 @@ plugins {
     id("net.kyori.indra.license-header") version "3.1.3"
 }
 
-val minecraftVersion = "1.21.3"
+val minecraftVersion = "1.21.4"
 val loaderVersion = "0.16.9"
-val fabricVersion = "0.109.0+1.21.3"
-val yarnVersion = "1.21.3+build.2"
+val fabricVersion = "0.113.0+1.21.4"
+val yarnVersion = "1.21.4+build.2"
 
 group = "com.moon.client"
 version = "1.0.0-SNAPSHOT"
@@ -54,7 +54,19 @@ java {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            from(components["java"])
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+
+            artifact(tasks.named("remapJar"))
+            fileTree("build/devlibs")
+                .matching { include("**/*.jar") }
+                .forEach { file ->
+                    artifact(file) {
+                        classifier = file.nameWithoutExtension.split("-").last()
+                        builtBy(tasks.build)
+                    }
+                }
         }
     }
     repositories {
