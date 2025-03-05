@@ -11,7 +11,7 @@ val fabricVersion = "0.113.0+1.21.4"
 val yarnVersion = "1.21.4+build.2"
 
 group = "com.moon.client"
-version = "1.0.0-SNAPSHOT"
+version = "0.0.1-SNAPSHOT"
 
 repositories {
     mavenLocal()
