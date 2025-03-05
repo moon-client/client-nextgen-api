@@ -1,40 +1,23 @@
-# gradle
+# Ignore everything by default
+/*
 
-.gradle/
-build/
-out/
-classes/
+# Allow sources
+!src/
 
-# eclipse
+# Allow gradle
+!gradle/
+!build.gradle.kts
+!gradlew
+!gradlew.bat
+!settings.gradle.kts
 
-*.launch
+# Allow license
+!LICENSE
+!license_header.txt
 
-# idea
+# Allow readme
+!README.md
 
-.idea/
-*.iml
-*.ipr
-*.iws
-
-# vscode
-
-.settings/
-.vscode/
-bin/
-.classpath
-.project
-
-# macos
-
-*.DS_Store
-
-# fabric
-
-run/
-
-# java
-
-hs_err_*.log
-replay_*.log
-*.hprof
-*.jfr
+# Allow git
+!.gitignore
+!.gitattributes
