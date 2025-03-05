@@ -10,6 +10,7 @@
 !gradlew
 !gradlew.bat
 !settings.gradle.kts
+!gradle.properties
 
 # Allow license
 !LICENSE

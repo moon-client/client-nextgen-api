@@ -5,10 +5,10 @@ plugins {
     id("net.kyori.indra.license-header") version "3.1.3"
 }
 
-val minecraftVersion = "1.21.4"
-val loaderVersion = "0.16.9"
-val fabricVersion = "0.113.0+1.21.4"
-val yarnVersion = "1.21.4+build.2"
+val minecraftVersion: String by extra
+val loaderVersion: String by extra
+val fabricVersion: String by extra
+val yarnVersion: String by extra
 
 group = "com.moon.client"
 version = "0.0.1-SNAPSHOT"
