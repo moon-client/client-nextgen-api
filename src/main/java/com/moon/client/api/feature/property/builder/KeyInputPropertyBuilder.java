@@ -20,22 +20,22 @@ package com.moon.client.api.feature.property.builder;
 import com.moon.client.api.feature.Configurable;
 import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
-import com.moon.client.api.feature.property.type.command.SubCommandProperty;
-import com.moon.client.api.feature.type.CommandFeature;
+import com.moon.client.api.feature.property.type.command.KeyInputProperty;
+import net.minecraft.client.util.InputUtil;
 
-public class SubCommandPropertyBuilder extends SimplePropertyBuilder<CommandFeature, EmptyPropertyConstraints, PropertyChangeObserver<Object, Object>, SubCommandProperty> {
-    public SubCommandPropertyBuilder(Configurable target) {
+public class KeyInputPropertyBuilder extends SimplePropertyBuilder<InputUtil.Key, EmptyPropertyConstraints, PropertyChangeObserver<Object, Object>, KeyInputProperty> {
+    public KeyInputPropertyBuilder(Configurable target) {
         super(target);
     }
 
     @Override
-    public SubCommandProperty build() {
+    public KeyInputProperty build() {
         // Invalid builder
-        if (metadata == null) {
-            throw new IllegalArgumentException("Incomplete builder, metadata must not be null");
+        if (metadata == null || target == null) {
+            throw new IllegalArgumentException("Incomplete builder, metadata, clazz, target must not be null");
         }
 
-        SubCommandProperty property = new SubCommandProperty(metadata, constraints, observer);
+        KeyInputProperty property = new KeyInputProperty(metadata, constraints, observer);
         property.value(defaultValue);
         target.addProperty(property);
         return property;

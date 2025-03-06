@@ -15,29 +15,29 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.moon.client.api.feature.property.builder;
+package com.moon.client.api.feature.property;
 
 import com.moon.client.api.feature.Configurable;
-import com.moon.client.api.feature.property.PropertyChangeObserver;
-import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
+import com.moon.client.api.feature.property.builder.KeyInputPropertyBuilder;
+import com.moon.client.api.feature.property.builder.SubCommandPropertyBuilder;
+import com.moon.client.api.feature.property.type.command.KeyInputProperty;
 import com.moon.client.api.feature.property.type.command.SubCommandProperty;
 import com.moon.client.api.feature.type.CommandFeature;
 
-public class SubCommandPropertyBuilder extends SimplePropertyBuilder<CommandFeature, EmptyPropertyConstraints, PropertyChangeObserver<Object, Object>, SubCommandProperty> {
-    public SubCommandPropertyBuilder(Configurable target) {
-        super(target);
+/**
+ * Used to create properties exclusive to {@link CommandFeature}s.
+ * <p>
+ * The reason this is seperated is to avoid confusion when creating properties for other feature types.
+ *
+ * @author lennoxlotl
+ * @since 1.0.0
+ */
+public class CommandPropertyFactory {
+    public static SubCommandPropertyBuilder subCommandBuilder(Configurable target) {
+        return SubCommandProperty.builder(target);
     }
 
-    @Override
-    public SubCommandProperty build() {
-        // Invalid builder
-        if (metadata == null) {
-            throw new IllegalArgumentException("Incomplete builder, metadata must not be null");
-        }
-
-        SubCommandProperty property = new SubCommandProperty(metadata, constraints, observer);
-        property.value(defaultValue);
-        target.addProperty(property);
-        return property;
+    public static KeyInputPropertyBuilder keyInputBuilder(Configurable target) {
+        return KeyInputProperty.builder(target);
     }
 }

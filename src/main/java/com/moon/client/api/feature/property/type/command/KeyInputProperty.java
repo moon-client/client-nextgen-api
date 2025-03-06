@@ -22,27 +22,27 @@ import com.moon.client.api.feature.Configurable;
 import com.moon.client.api.feature.property.Property;
 import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.PropertyMetadata;
-import com.moon.client.api.feature.property.builder.SubCommandPropertyBuilder;
+import com.moon.client.api.feature.property.builder.KeyInputPropertyBuilder;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
 import com.moon.client.api.feature.type.CommandFeature;
+import net.minecraft.client.util.InputUtil;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * Property exclusively usable in {@link CommandFeature}s.
- * Defines a sub-command identified / executable by a defined id.
  *
  * @author lennoxlotl
  * @since 1.0.0
  */
-public class SubCommandProperty extends Property<CommandFeature, EmptyPropertyConstraints, PropertyChangeObserver<Object, Object>> {
-    public SubCommandProperty(PropertyMetadata metadata,
-                              EmptyPropertyConstraints constraints,
-                              PropertyChangeObserver<Object, Object> observer) {
+public class KeyInputProperty extends Property<InputUtil.Key, EmptyPropertyConstraints, PropertyChangeObserver<Object, Object>> {
+    public KeyInputProperty(PropertyMetadata metadata,
+                            EmptyPropertyConstraints constraints,
+                            PropertyChangeObserver<Object, Object> observer) {
         super(metadata, constraints, observer);
     }
 
     @Override
-    public void value(CommandFeature value) {
+    public void value(InputUtil.Key value) {
         this.value = value;
     }
 
@@ -55,7 +55,7 @@ public class SubCommandProperty extends Property<CommandFeature, EmptyPropertyCo
     public void deserialize(JsonObject object) {
     }
 
-    public static SubCommandPropertyBuilder builder(Configurable target) {
-        return new SubCommandPropertyBuilder(target);
+    public static KeyInputPropertyBuilder builder(Configurable target) {
+        return new KeyInputPropertyBuilder(target);
     }
 }
