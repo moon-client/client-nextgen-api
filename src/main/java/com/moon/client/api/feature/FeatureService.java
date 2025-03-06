@@ -17,7 +17,10 @@
  */
 package com.moon.client.api.feature;
 
+import com.moon.client.api.feature.type.CommandFeature;
 import com.moon.client.api.service.Service;
+
+import java.util.List;
 
 /**
  * Public access to the feature api.
@@ -53,4 +56,18 @@ public interface FeatureService extends Service {
      * @since 1.0.0
      */
     <T extends Feature> T find(String id);
+
+    /**
+     * Finds all features of the given type.
+     * <p>
+     * This function is cached and caching is invalidated on call of {@link FeatureService#register(Feature)}.
+     * First query is O(n) in most cases (exception if super-class is not directly the provided feature type),
+     * once cached it is O(1) for future queries.
+     *
+     * @param featureType Feature type class (e.g. {@link CommandFeature})
+     * @param <T>         Feature type
+     * @return List of features inheriting requested type
+     * @since 1.0.0
+     */
+    <T extends Feature> List<T> findAllOf(Class<T> featureType);
 }
