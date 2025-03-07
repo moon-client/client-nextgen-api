@@ -40,12 +40,14 @@ import java.util.List;
 @Getter
 public class EnumProperty<T extends Enum<T> & PropertyEnum> extends Property<T, EmptyPropertyConstraints, PropertyChangeObserver<T, T>> {
     private final List<T> constants;
+    private final Class<T> enumClazz;
 
     public EnumProperty(PropertyMetadata metadata,
                         EmptyPropertyConstraints constraints,
                         PropertyChangeObserver<T, T> observer,
                         Class<T> clazz) {
         super(metadata, constraints, observer);
+        this.enumClazz = clazz;
         this.constants = Arrays.stream(clazz.getEnumConstants()).toList();
     }
 
