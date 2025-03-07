@@ -24,6 +24,7 @@ import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.PropertyMetadata;
 import com.moon.client.api.feature.property.builder.StringPropertyBuilder;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -35,6 +36,7 @@ import java.util.regex.Pattern;
  * @author lennoxlotl
  * @since 1.0.0
  */
+@Getter
 @Setter
 @Accessors(fluent = true)
 public class StringProperty extends Property<String, EmptyPropertyConstraints, PropertyChangeObserver<String, String>> {
