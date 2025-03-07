@@ -23,8 +23,21 @@ import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
 import com.moon.client.api.feature.property.type.StringProperty;
 
 public class StringPropertyBuilder extends SimplePropertyBuilder<String, EmptyPropertyConstraints, PropertyChangeObserver<String, String>, StringProperty> {
+    private boolean word;
+
     public StringPropertyBuilder(Configurable target) {
         super(target);
+    }
+
+    /**
+     * Disallows whitespaces or newlines in the property values.
+     *
+     * @return Current string property builder
+     * @since 1.0.0
+     */
+    public StringPropertyBuilder noWhitespace() {
+        this.word = true;
+        return this;
     }
 
     @Override
@@ -35,6 +48,7 @@ public class StringPropertyBuilder extends SimplePropertyBuilder<String, EmptyPr
         }
 
         StringProperty property = new StringProperty(metadata, constraints, observer);
+        property.word(word);
         property.value(defaultValue);
         target.addProperty(property);
         return property;

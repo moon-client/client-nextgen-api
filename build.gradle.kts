@@ -11,7 +11,7 @@ val fabricVersion: String by extra
 val yarnVersion: String by extra
 
 group = "com.moon.client"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.2-SNAPSHOT"
 
 repositories {
     mavenLocal()

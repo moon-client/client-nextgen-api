@@ -27,10 +27,9 @@ package com.moon.client.api.feature;
  */
 public interface Executable {
     /**
-     * Executes the executable with arguments.
+     * Triggers an execution.
      *
-     * @param args The arguments
      * @since 1.0.0
      */
-    void execute(String[] args);
+    void execute();
 }

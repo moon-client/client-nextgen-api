@@ -24,6 +24,10 @@ import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.PropertyMetadata;
 import com.moon.client.api.feature.property.builder.StringPropertyBuilder;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+import java.util.regex.Pattern;
 
 /**
  * Property used to represent {@link String} property types.
@@ -31,7 +35,13 @@ import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
  * @author lennoxlotl
  * @since 1.0.0
  */
+@Setter
+@Accessors(fluent = true)
 public class StringProperty extends Property<String, EmptyPropertyConstraints, PropertyChangeObserver<String, String>> {
+    private static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\s+");
+    // If set only allows singular words to be set as value
+    private boolean word;
+
     public StringProperty(PropertyMetadata metadata,
                           EmptyPropertyConstraints constraints,
                           PropertyChangeObserver<String, String> observer) {
@@ -40,6 +50,11 @@ public class StringProperty extends Property<String, EmptyPropertyConstraints, P
 
     @Override
     public void value(String value) {
+        // Don't allow whitespaces or newlines
+        if (word && containsWhitespace(value)) {
+            return;
+        }
+
         if (observer != null) {
             observer.observe(this.value, value);
         }
@@ -57,6 +72,10 @@ public class StringProperty extends Property<String, EmptyPropertyConstraints, P
     @Override
     public void deserialize(JsonObject object) {
         value = object.get("value").getAsString();
+    }
+
+    private boolean containsWhitespace(String input) {
+        return WHITESPACE_PATTERN.matcher(input).find();
     }
 
     public static StringPropertyBuilder builder(Configurable target) {
