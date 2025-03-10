@@ -19,22 +19,22 @@ package com.moon.client.api.feature.property.builder;
 
 import com.moon.client.api.feature.Configurable;
 import com.moon.client.api.feature.property.PropertyChangeObserver;
-import com.moon.client.api.feature.property.constraint.StringPropertyConstraints;
-import com.moon.client.api.feature.property.type.StringProperty;
+import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
+import com.moon.client.api.feature.property.type.BooleanProperty;
 
-public class StringPropertyBuilder extends SimplePropertyBuilder<String, StringPropertyConstraints, PropertyChangeObserver<String, String>, StringProperty> {
-    public StringPropertyBuilder(Configurable target) {
+public class BooleanPropertyBuilder extends SimplePropertyBuilder<Boolean, EmptyPropertyConstraints, PropertyChangeObserver<Boolean, Boolean>, BooleanProperty> {
+    public BooleanPropertyBuilder(Configurable target) {
         super(target);
     }
 
     @Override
-    public StringProperty build() {
+    public BooleanProperty build() {
         // Invalid builder
         if (metadata == null || target == null) {
             throw new IllegalArgumentException("Incomplete builder, metadata, target must not be null");
         }
 
-        StringProperty property = new StringProperty(metadata, constraints, observer);
+        BooleanProperty property = new BooleanProperty(metadata, constraints, observer);
         property.value(defaultValue);
         target.addProperty(property);
         return property;

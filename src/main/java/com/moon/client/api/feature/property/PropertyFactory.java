@@ -20,12 +20,9 @@ package com.moon.client.api.feature.property;
 import com.moon.client.api.feature.Configurable;
 import com.moon.client.api.feature.Feature;
 import com.moon.client.api.feature.property.builder.*;
-import com.moon.client.api.feature.property.type.EnumProperty;
-import com.moon.client.api.feature.property.type.GroupProperty;
-import com.moon.client.api.feature.property.type.ModeEnumProperty;
+import com.moon.client.api.feature.property.type.*;
 import com.moon.client.api.feature.property.type.number.FloatProperty;
 import com.moon.client.api.feature.property.type.number.IntProperty;
-import com.moon.client.api.feature.property.type.StringProperty;
 
 /**
  * Used to create properties linked to {@link Configurable} {@link Feature}s.
@@ -56,5 +53,9 @@ public class PropertyFactory {
 
     public static GroupPropertyBuilder groupBuilder(Configurable target) {
         return GroupProperty.builder(target);
+    }
+
+    public static BooleanPropertyBuilder booleanBuilder(Configurable target) {
+        return BooleanProperty.builder(target);
     }
 }

@@ -22,40 +22,25 @@ import com.moon.client.api.feature.Configurable;
 import com.moon.client.api.feature.property.Property;
 import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.PropertyMetadata;
-import com.moon.client.api.feature.property.builder.StringPropertyBuilder;
+import com.moon.client.api.feature.property.builder.BooleanPropertyBuilder;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
-import com.moon.client.api.feature.property.constraint.StringPropertyConstraints;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.Accessors;
-
-import java.util.regex.Pattern;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Property used to represent {@link String} property types.
+ * Property for {@link Boolean} property types.
  *
  * @author lennoxlotl
  * @since 1.0.0
  */
-@Getter
-@Setter
-@Accessors(fluent = true)
-public class StringProperty extends Property<String, StringPropertyConstraints, PropertyChangeObserver<String, String>> {
-    private static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\s+");
-
-    public StringProperty(PropertyMetadata metadata,
-                          StringPropertyConstraints constraints,
-                          PropertyChangeObserver<String, String> observer) {
+public class BooleanProperty extends Property<Boolean, EmptyPropertyConstraints, PropertyChangeObserver<Boolean, Boolean>> {
+    public BooleanProperty(PropertyMetadata metadata,
+                           EmptyPropertyConstraints constraints,
+                           PropertyChangeObserver<Boolean, Boolean> observer) {
         super(metadata, constraints, observer);
     }
 
     @Override
-    public void value(String value) {
-        // Don't allow whitespaces or newlines
-        if (constraints != null && constraints.word() && containsWhitespace(value)) {
-            return;
-        }
-
+    public void value(Boolean value) {
         if (observer != null) {
             observer.observe(this.value, value);
         }
@@ -64,7 +49,7 @@ public class StringProperty extends Property<String, StringPropertyConstraints, 
     }
 
     @Override
-    public JsonObject serialize() {
+    public @Nullable JsonObject serialize() {
         JsonObject object = createBasicObject();
         object.addProperty("value", value);
         return object;
@@ -72,17 +57,10 @@ public class StringProperty extends Property<String, StringPropertyConstraints, 
 
     @Override
     public void deserialize(JsonObject object) {
-        value = object.get("value").getAsString();
+        value = object.get("value").getAsBoolean();
     }
 
-    private boolean containsWhitespace(String input) {
-        if (input == null) {
-            return false;
-        }
-        return WHITESPACE_PATTERN.matcher(input).find();
-    }
-
-    public static StringPropertyBuilder builder(Configurable target) {
-        return new StringPropertyBuilder(target);
+    public static BooleanPropertyBuilder builder(Configurable target) {
+        return new BooleanPropertyBuilder(target);
     }
 }
