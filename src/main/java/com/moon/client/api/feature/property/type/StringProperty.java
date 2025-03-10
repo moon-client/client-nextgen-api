@@ -24,6 +24,7 @@ import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.PropertyMetadata;
 import com.moon.client.api.feature.property.builder.StringPropertyBuilder;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
+import com.moon.client.api.feature.property.constraint.StringPropertyConstraints;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -39,13 +40,11 @@ import java.util.regex.Pattern;
 @Getter
 @Setter
 @Accessors(fluent = true)
-public class StringProperty extends Property<String, EmptyPropertyConstraints, PropertyChangeObserver<String, String>> {
+public class StringProperty extends Property<String, StringPropertyConstraints, PropertyChangeObserver<String, String>> {
     private static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\s+");
-    // If set only allows singular words to be set as value
-    private boolean word;
 
     public StringProperty(PropertyMetadata metadata,
-                          EmptyPropertyConstraints constraints,
+                          StringPropertyConstraints constraints,
                           PropertyChangeObserver<String, String> observer) {
         super(metadata, constraints, observer);
     }
@@ -53,7 +52,7 @@ public class StringProperty extends Property<String, EmptyPropertyConstraints, P
     @Override
     public void value(String value) {
         // Don't allow whitespaces or newlines
-        if (word && containsWhitespace(value)) {
+        if (constraints != null && constraints.word() && containsWhitespace(value)) {
             return;
         }
 
