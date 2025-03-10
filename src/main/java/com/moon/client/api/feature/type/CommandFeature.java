@@ -23,6 +23,7 @@ import com.moon.client.api.feature.Feature;
 import com.moon.client.api.feature.FeatureMetadata;
 import com.moon.client.api.feature.property.Property;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +44,11 @@ public abstract class CommandFeature implements Feature, Executable, Configurabl
     @Getter
     private final List<Property<?, ?, ?>> properties = new ArrayList<>();
     private final FeatureMetadata metadata;
+    @Getter
+    @Setter
+    private boolean lastArgumentOptional;
 
-    protected CommandFeature(FeatureMetadata metadata) {
+    public CommandFeature(FeatureMetadata metadata) {
         this.metadata = metadata;
     }
 
