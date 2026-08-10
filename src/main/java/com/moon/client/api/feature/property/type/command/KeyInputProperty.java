@@ -25,7 +25,7 @@ import com.moon.client.api.feature.property.PropertyMetadata;
 import com.moon.client.api.feature.property.builder.KeyInputPropertyBuilder;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
 import com.moon.client.api.feature.type.CommandFeature;
-import net.minecraft.client.util.InputUtil;
+import com.mojang.blaze3d.platform.InputConstants;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -34,7 +34,7 @@ import org.jetbrains.annotations.Nullable;
  * @author lennoxlotl
  * @since 1.0.0
  */
-public class KeyInputProperty extends Property<InputUtil.Key, EmptyPropertyConstraints, PropertyChangeObserver<Object, Object>> {
+public class KeyInputProperty extends Property<InputConstants.Key, EmptyPropertyConstraints, PropertyChangeObserver<Object, Object>> {
     public KeyInputProperty(PropertyMetadata metadata,
                             EmptyPropertyConstraints constraints,
                             PropertyChangeObserver<Object, Object> observer) {
@@ -42,7 +42,7 @@ public class KeyInputProperty extends Property<InputUtil.Key, EmptyPropertyConst
     }
 
     @Override
-    public void value(InputUtil.Key value) {
+    public void value(InputConstants.Key value) {
         this.value = value;
     }
 

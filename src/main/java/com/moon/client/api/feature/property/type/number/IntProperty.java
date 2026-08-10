@@ -24,7 +24,7 @@ import com.moon.client.api.feature.property.PropertyMetadata;
 import com.moon.client.api.feature.property.builder.IntPropertyBuilder;
 import com.moon.client.api.feature.property.constraint.NumberPropertyConstraints;
 import lombok.Getter;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 /**
  * Property used to represent {@link Integer} java types.
@@ -43,9 +43,9 @@ public class IntProperty extends NumberProperty<Integer> {
     @Override
     public void value(Integer value) {
         int steps = constraints.steps();
-        int clamped = MathHelper.clamp(value, constraints.min(), constraints.max());
+        int clamped = Mth.clamp(value, constraints.min(), constraints.max());
         int rounded =
-            MathHelper.clamp(
+            Mth.clamp(
                 (int) Math.round(steps * Math.ceil(value.floatValue() / steps)),
                 constraints.min(),
                 constraints.max());

@@ -21,9 +21,9 @@ import com.moon.client.api.feature.Configurable;
 import com.moon.client.api.feature.property.PropertyChangeObserver;
 import com.moon.client.api.feature.property.constraint.EmptyPropertyConstraints;
 import com.moon.client.api.feature.property.type.command.KeyInputProperty;
-import net.minecraft.client.util.InputUtil;
+import com.mojang.blaze3d.platform.InputConstants;
 
-public class KeyInputPropertyBuilder extends SimplePropertyBuilder<InputUtil.Key, EmptyPropertyConstraints, PropertyChangeObserver<Object, Object>, KeyInputProperty> {
+public class KeyInputPropertyBuilder extends SimplePropertyBuilder<InputConstants.Key, EmptyPropertyConstraints, PropertyChangeObserver<Object, Object>, KeyInputProperty> {
     public KeyInputPropertyBuilder(Configurable target) {
         super(target);
     }

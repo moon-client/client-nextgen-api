@@ -24,7 +24,7 @@ import com.moon.client.api.feature.property.PropertyMetadata;
 import com.moon.client.api.feature.property.builder.FloatPropertyBuilder;
 import com.moon.client.api.feature.property.constraint.NumberPropertyConstraints;
 import lombok.Getter;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 /**
  * Property used to represent {@link Float} java types.
@@ -43,11 +43,11 @@ public class FloatProperty extends NumberProperty<Float> {
     @Override
     public void value(Float value) {
         float steps = constraints.steps();
-        float clamped = MathHelper.clamp(value, constraints.min(), constraints.max());
+        float clamped = Mth.clamp(value, constraints.min(), constraints.max());
         float rounded =
             (float) round(
-                MathHelper.clamp(
-                    steps * MathHelper.ceil(value / steps),
+                Mth.clamp(
+                    steps * Mth.ceil(value / steps),
                     constraints.min(),
                     constraints.max()),
                 PLACES_COUNT);

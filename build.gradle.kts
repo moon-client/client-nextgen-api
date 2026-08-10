@@ -1,6 +1,6 @@
 plugins {
     id("maven-publish")
-    id("fabric-loom") version "1.8-SNAPSHOT"
+    id("fabric-loom") version "1.13.6"
     id("com.peterabeles.gversion") version "1.10.2"
     id("net.kyori.indra.license-header") version "3.1.3"
 }
@@ -8,10 +8,9 @@ plugins {
 val minecraftVersion: String by extra
 val loaderVersion: String by extra
 val fabricVersion: String by extra
-val yarnVersion: String by extra
 
 group = "com.moon.client"
-version = "0.0.2-SNAPSHOT"
+version = "0.0.3-SNAPSHOT"
 
 repositories {
     mavenLocal()
@@ -26,7 +25,7 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
-    mappings("net.fabricmc:yarn:$yarnVersion:v2")
+    mappings(loom.officialMojangMappings())
     modImplementation("net.fabricmc:fabric-loader:$loaderVersion")
     modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricVersion")
 
