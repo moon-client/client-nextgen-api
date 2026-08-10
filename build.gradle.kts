@@ -1,8 +1,11 @@
 plugins {
     id("maven-publish")
-    id("fabric-loom") version "1.13.6"
+    id("net.fabricmc.fabric-loom") version "1.17.19"
     id("com.peterabeles.gversion") version "1.10.2"
-    id("net.kyori.indra.license-header") version "3.1.3"
+    // PORT(26.2): indra license-header 3.x is not Gradle 9 compatible and no
+    // Gradle-9-ready release exists yet. It only stamps license headers (see
+    // license_header.txt), so it is dropped on the port branch. Re-add when a
+    // compatible version ships, or apply headers manually before publishing.
 }
 
 val minecraftVersion: String by extra
@@ -10,7 +13,7 @@ val loaderVersion: String by extra
 val fabricVersion: String by extra
 
 group = "com.moon.client"
-version = "0.0.3-SNAPSHOT"
+version = "0.0.4-SNAPSHOT"
 
 repositories {
     mavenLocal()
@@ -25,16 +28,15 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
-    mappings(loom.officialMojangMappings())
-    modImplementation("net.fabricmc:fabric-loader:$loaderVersion")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricVersion")
+    implementation("net.fabricmc:fabric-loader:$loaderVersion")
+    implementation("net.fabricmc.fabric-api:fabric-api:$fabricVersion")
 
     implementation("io.github.llamalad7:mixinextras-fabric:0.5.0-beta.4")
     annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.5.0-beta.4")
     include("io.github.llamalad7:mixinextras-fabric:0.5.0-beta.4")
 
-    implementation("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+    implementation("org.projectlombok:lombok:1.18.46")
+    annotationProcessor("org.projectlombok:lombok:1.18.46")
 
     implementation("net.kyori:adventure-api:4.17.0")
     implementation("net.kyori:adventure-text-minimessage:4.17.0")
@@ -44,7 +46,7 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
     withSourcesJar()
     withJavadocJar()
@@ -57,15 +59,11 @@ publishing {
             artifactId = project.name
             version = project.version.toString()
 
-            artifact(tasks.named("remapJar"))
-            fileTree("build/devlibs")
-                .matching { include("**/*.jar") }
-                .forEach { file ->
-                    artifact(file) {
-                        classifier = file.nameWithoutExtension.split("-").last()
-                        builtBy(tasks.build)
-                    }
-                }
+            // PORT(26.2): the no-remap loom plugin has no remapJar task, and since Minecraft
+            // is unobfuscated there is no separate "dev" (named) jar any more - the plain jar
+            // already carries mojmap names. Consumers depend on the default artifact.
+            artifact(tasks.named("jar"))
+            artifact(tasks.named("sourcesJar"))
         }
     }
     repositories {
@@ -77,10 +75,11 @@ publishing {
     }
 }
 
-tasks.compileJava {
-    // Automatically insert license header
-    dependsOn(tasks.licenseFormat)
-}
+// PORT(26.2): licenseFormat came from the dropped indra license-header plugin
+//tasks.compileJava {
+//    // Automatically insert license header
+//    dependsOn(tasks.licenseFormat)
+//}
 
 tasks.withType<JavaCompile> { options.encoding = "UTF-8" }
 tasks.withType<Test> { defaultCharacterEncoding = "UTF-8" }
