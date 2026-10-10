@@ -1,6 +1,6 @@
 plugins {
     id("maven-publish")
-    id("net.fabricmc.fabric-loom") version "1.17.19"
+    id("net.fabricmc.fabric-loom") version "1.18.4"
     id("com.peterabeles.gversion") version "1.10.2"
     // PORT(26.2): indra license-header 3.x is not Gradle 9 compatible and no
     // Gradle-9-ready release exists yet. It only stamps license headers (see
@@ -13,7 +13,7 @@ val loaderVersion: String by extra
 val fabricVersion: String by extra
 
 group = "com.moon.client"
-version = "0.0.4-SNAPSHOT"
+version = "0.0.5-SNAPSHOT"
 
 repositories {
     mavenLocal()

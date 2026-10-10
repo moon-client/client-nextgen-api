@@ -19,7 +19,6 @@ package com.moon.client.api.feature;
 
 import com.moon.client.api.feature.binding.BindingInputDevice;
 import com.moon.client.api.feature.binding.BindingTriggerStrategy;
-import org.lwjgl.glfw.GLFW;
 
 /**
  * Makes a feature bindable.
@@ -59,8 +58,10 @@ public interface Bindable {
      * <p>
      * Depending on the input device the format of this key is different.
      * <ul>
-     * <li>For {@link BindingInputDevice#KEYBOARD} the value will be in the format of {@link GLFW} keys</li>
-     * <li>For {@link BindingInputDevice#MOUSE} the value will represent the index of the button used</li>
+     * <li>For {@link BindingInputDevice#KEYBOARD} the value will be a Minecraft key code
+     * ({@code InputConstants.KEY_*}; SDL scancodes since 26.3, which replaced GLFW)</li>
+     * <li>For {@link BindingInputDevice#MOUSE} the value will be a Minecraft mouse button
+     * ({@code InputConstants.MOUSE_BUTTON_*}; 1-based SDL buttons since 26.3)</li>
      * </ul>
      *
      * @return Input key value
